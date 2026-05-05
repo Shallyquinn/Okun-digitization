@@ -1,0 +1,239 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "name": "OkunNLP: English-Okun Parallel Corpus",
+  "description": "OkunNLP is the first English-Okun parallel corpus, comprising 5,015 verse-aligned sentence pairs extracted from six books of the Okun Bible (Bible Society of Nigeria, 2022) and aligned with the public-domain King James Version. The corpus supports neural machine translation research for Okun, a Northeast Yoruba dialect cluster spoken by over two million people in Kogi State, Nigeria.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "citeAs": "@inproceedings{omotowa2026okunnlp,\n  title={OkunNLP: The First Parallel Corpus and Neural MT System for the Okun Language of Nigeria},\n  author={Omotowa, Oluwatobi Shalom},\n  booktitle={Proceedings of the 40th Conference on Neural Information Processing Systems (NeurIPS 2026) Evaluations and Datasets Track},\n  year={2026},\n  address={Sydney, Australia}\n}",
+  "license": "CC-BY-NC-4.0",
+  "url": "https://huggingface.co/datasets/Tobi-Shalom/english-Okun_corpus_Dataset",
+  "version": "1.0.0",
+  "datePublished": "2026-05-07",
+  "dateModified": "2026-05-07",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Oluwatobi Shalom Omotowa",
+      "email": "oluwatobishalom2002@gmail.com",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Independent Researcher"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "Nigeria",
+        "addressRegion": "Lagos"
+      }
+    }
+  ],
+  "keywords": [
+    "machine translation",
+    "low-resource languages",
+    "African languages",
+    "Okun language",
+    "Northeast Yoruba",
+    "parallel corpus",
+    "Bible corpus",
+    "natural language processing",
+    "multilingual NLP",
+    "Yoruba dialects",
+    "Nigerian languages",
+    "dataset",
+    "benchmark"
+  ],
+  "inLanguage": ["en", "okun"],
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Kogi State, Nigeria",
+    "description": "Okun-speaking regions including Ijumu, Yagba West, Yagba East, Kabba/Bunu, and Mopa-Muro Local Government Areas"
+  },
+  "temporalCoverage": "2024-2026",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "corpus-csv",
+      "name": "okun_corpus_final.csv",
+      "description": "Complete parallel corpus in CSV format with UTF-8 encoding. Contains columns: Reference, English (KJV), Okun, OCR_Confidence, Split.",
+      "contentUrl": "https://huggingface.co/datasets/Tobi-Shalom/english-Okun_corpus_Dataset/resolve/main/okun_corpus_final.csv",
+      "encodingFormat": "text/csv",
+      "sha256": "de5835fc7f1f2ab84a7545769b1bb9d2b61a240f2ef316c0b54662fd89e1028a",
+      "contentSize": "520,633 bytes"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "data-splits",
+      "name": "data_splits",
+      "description": "Train/development/test splits (80/10/10) contained within the main corpus CSV via the Split column",
+      "containedIn": {
+        "@id": "corpus-csv"
+      },
+      "includes": "okun_corpus_final.csv",
+      "encodingFormat": "text/csv"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "parallel-sentences",
+      "name": "parallel_sentences",
+      "description": "English-Okun parallel sentence pairs aligned at verse level. Total: 5,015 pairs from six biblical books (Psalms, Job, Proverbs, Ecclesiastes, Song of Solomon, Isaiah 1-10). Quality-filtered experimental subset: 1,959 pairs (train=1,567, dev=196, test=196).",
+      "key": "reference",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "sentence-pairs/reference",
+          "name": "Reference",
+          "description": "Biblical verse reference in format 'Book Chapter:Verse' (e.g., 'Psalms 1:1', 'Job 1:1'). Serves as unique identifier for each sentence pair.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "corpus-csv"
+            },
+            "extract": {
+              "column": "Reference"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "sentence-pairs/english",
+          "name": "English (KJV)",
+          "description": "English sentence from the King James Version Bible (public domain). Source language for machine translation tasks.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "corpus-csv"
+            },
+            "extract": {
+              "column": "English (KJV)"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "sentence-pairs/okun",
+          "name": "Okun",
+          "description": "Okun translation from the Okun Bible (Bible Society of Nigeria, 2022). Contains diacritical marks including subdot vowels and tone marks. Target language for machine translation tasks. Encoding: UTF-8.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "corpus-csv"
+            },
+            "extract": {
+              "column": "Okun"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "sentence-pairs/ocr-confidence",
+          "name": "OCR_Confidence",
+          "description": "Google Cloud Vision API confidence score for the OCR extraction (0.0-1.0). Used for quality filtering; experimental subset uses threshold > 0.85.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "corpus-csv"
+            },
+            "extract": {
+              "column": "OCR_Confidence"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "sentence-pairs/split",
+          "name": "Split",
+          "description": "Dataset split assignment: 'train', 'dev', or 'test'. Only present for the 1,959 quality-filtered pairs; remaining 3,056 pairs have value 'full_only'.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "corpus-csv"
+            },
+            "extract": {
+              "column": "Split"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rai:dataCollection": "The corpus was constructed via dual-column OCR extraction from the printed Okun Bible (Bible Society of Nigeria, 2022). Collection involved: (1) Smartphone photography of six biblical books in landscape orientation. (2) Page splitting: PDF pages rendered at 300 DPI, rotated 270 degrees, split vertically at midpoint. (3) Image enhancement: contrast x1.3, sharpness x1.5. (4) OCR via Google Cloud Vision API (Tesseract discarded due to diacritic failure). (5) Verse alignment using deterministic counters from known chapter-verse counts. Discrepancies flagged for manual review; incomplete verses marked [MISSING]. No content-based exclusions; all exclusions due to OCR quality. Manual quality review by native Okun speakers (Ijumu dialect) on 100 randomly selected pairs showed 91% alignment accuracy, 83% diacritic preservation, 89% text integrity. Collection timeframe: October 2024 - April 2026.",
+  "rai:dataBiases": "Domain bias: Corpus restricted to six biblical books, skewing toward theological/literary register and excluding modern conversational, technical, news, commercial, and administrative vocabulary. Genre bias: High formulaic repetition in wisdom literature (Proverbs) and poetry (Psalms) reduces lexical/syntactic diversity; models may memorize patterns rather than learn generalizable translation. Dialect bias: Okun Bible translated from Yoruba Common Language Bible, potentially introducing Yoruba lexical influence (e.g., 'awon' substituting Okun 'oghon' for third-person plural). OCR quality bias: Confidence scores range 0.42-0.98 (mean 0.81); Psalms chapters 100-150 show 38% diacritic omission due to spine curvature. Language proxy bias: Models fine-tuned with Yoruba (yor_Latn) as proxy since no Okun code exists, causing systematic Yoruba lexical bleed and subdot vowel omission. Geographic bias: Quality review used only Ijumu dialect speakers; seven Okun sub-varieties (Bunu, Ijumu, Owe, Oworo, Iyagba, Ikiri, Gbede) may vary.",
+  "rai:personalSensitiveInformation": "The corpus contains no personal information, sensitive data, or identifiable information. All content is biblical text (Okun Bible and King James Version). No references to living individuals. containsPII=false. No privacy preservation methods required.",
+  "rai:dataUseCases": "Intended uses: Training and evaluating neural machine translation models for English-Okun and Okun-English translation; establishing baseline MT benchmarks for Okun; fine-tuning multilingual pre-trained models (M2M100, NLLB-200, mBART); studying transfer learning for low-resource African languages; corpus linguistics research on Okun morphology and syntax; educational resources for Okun language preservation. Out-of-scope uses: General-purpose Okun translation beyond biblical domain (out-of-domain BLEU drops 48-49 points); real-time production systems without additional training; commercial services (license is CC-BY-NC-4.0); Southwest/Southeast Yoruba dialect models; medical/legal/safety-critical translation without human oversight.",
+  "rai:dataLimitations": "Small corpus size (5,015 pairs) limits model capacity. Restricted to religious biblical domain with no conversational or technical text. OCR-induced diacritical errors in approximately 17% of verses, concentrated in low-confidence extractions (confidence < 0.70 shows 38% diacritic omission). Text-only corpus cannot directly support ASR/TTS. Yoruba language proxy introduces systematic lexical biases. Test set is strictly in-domain from same six books as training data; out-of-domain evaluation shows 48-49 BLEU point drops (Genesis narrative test). No dialectal annotation distinguishing seven Okun sub-varieties. English source uses 1611 King James Version with archaic vocabulary. No linguistic annotations beyond sentence alignment.",
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "A morpho-semantic study of Okun names: Implications for Okun linguistic identity",
+      "author": [{"@type": "Person", "name": "Folorunsho Ilori"}, {"@type": "Person", "name": "Olushola Are"}],
+      "datePublished": "2021",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Unilag Journal of Humanities",
+        "volumeNumber": "9",
+        "issueNumber": "2"
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "A rule-based approach to English-Okun prepositional phrase machine translation",
+      "author": [{"@type": "Person", "name": "A. Esan"}],
+      "datePublished": "2024",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Dutse Journal of Pure and Applied Sciences"
+      }
+    },
+    {
+      "@type": "Book",
+      "name": "Okun Holy Bible",
+      "publisher": {"@type": "Organization", "name": "Bible Society of Nigeria"},
+      "datePublished": "2022"
+    }
+  ]
+}
