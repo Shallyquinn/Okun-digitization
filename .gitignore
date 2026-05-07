@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Data and models (do not commit large files)
+data/raw/
+data/interim/
+models/
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+
+# OCR / API credentials
+*-credentials.json
+service-account*.json
+.gcloud/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+wandb/
+runs/
