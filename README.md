@@ -24,15 +24,10 @@ This repository contains the full pipeline used to construct the corpus and to f
 ├── okunnlp_croissant.json          Dataset metadata (Croissant 1.0 + RAI)
 ├── DATASHEET.md                    Datasheet for the corpus
 │
-├── notebooks/
-│   ├── 01_pdf_page_extraction.ipynb     Render PDF pages and split two-page spreads
-│   ├── 02_ocr_data_collection.ipynb     OCR via Google Cloud Vision API
-│   ├── 03_verse_extraction.ipynb        Parse OCR output into structured verses
-│   ├── 04_corpus_cleaning.ipynb         Clean, align, and quality-filter verse pairs
-│   └── 05_model_finetuning.ipynb        Fine-tune NLLB-200 / M2M100 baselines
-│
-└── src/
-    └── enhanced_okun_extractor.py       Standalone extractor utilities
+└── notebooks/
+    ├── 01_pdf_page_extraction.ipynb     Render PDF pages and split two-page spreads
+    ├── 02_ocr_data_collection.ipynb     Google Cloud Vision OCR, verse alignment, CSV fill
+    └── 03_model_finetuning.ipynb        Fine-tune NLLB-200 / M2M100 baselines
 ```
 
 ## Installation
@@ -66,13 +61,11 @@ The notebooks are numbered in the order they should be run. Each notebook reads 
 
 | Step | Notebook | Input | Output |
 |---|---|---|---|
-| 1 | `01_pdf_page_extraction.ipynb` | Scanned Okun Bible PDF | Per-page PNG images at 300 DPI, split at column midpoint |
-| 2 | `02_ocr_data_collection.ipynb` | Page images | Raw OCR JSON (text + confidence per region) |
-| 3 | `03_verse_extraction.ipynb` | Raw OCR JSON | Structured verses keyed by `Book Chapter:Verse` |
-| 4 | `04_corpus_cleaning.ipynb` | Structured verses | `okun_corpus_final.csv` with train/dev/test split |
-| 5 | `05_model_finetuning.ipynb` | `okun_corpus_final.csv` | Fine-tuned model checkpoint and BLEU/chrF scores |
+| 1 | `01_pdf_page_extraction.ipynb` | Scanned Okun Bible PDFs | Per-page PNG images at 300 DPI, split at column midpoint |
+| 2 | `02_ocr_data_collection.ipynb` | Page images | Verse-aligned text via Google Cloud Vision OCR + deterministic chapter-verse counter, with manual review for discrepancies. Produces the final CSV. |
+| 3 | `03_model_finetuning.ipynb` | `okun_corpus_experimental_1959.csv` | Fine-tuned M2M100 / NLLB-200 checkpoints + BLEU/chrF scores |
 
-The released corpus (5,015 pairs) and the quality-filtered experimental subset (1,959 pairs, 80/10/10 split with OCR confidence > 0.85) are both produced by step 4.
+The released corpus (5,015 pairs) and the experimental subset (1,959 pairs, 80/10/10 split) are both produced by step 2.
 
 ## Dataset
 
