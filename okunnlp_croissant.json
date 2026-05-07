@@ -103,8 +103,8 @@
       "description": "Experimental subset of 1,959 manually verified English-Okun parallel sentence pairs used for the MT experiments reported in the paper. Includes Split column with train/dev/test assignments (1,567 / 196 / 196).",
       "contentUrl": "https://huggingface.co/datasets/Tobi-Shalom/english-Okun_corpus_Dataset/resolve/main/okun_corpus_experimental_1959.csv",
       "encodingFormat": "text/csv",
-      "sha256": "ae149657370fbdedc1d294140ee76e3998ee10b8bf1577954303b415c4a580dd",
-      "contentSize": "452,717 bytes"
+      "sha256": "ce17e89a7b6d03029ba26fe8d0611e6589b2801233499f6f1e5ab404b05321c0",
+      "contentSize": "454,677 bytes"
     },
     {
       "@type": "cr:FileObject",
@@ -113,8 +113,8 @@
       "description": "Complete English-Okun parallel corpus (5,015 verse-aligned pairs) covering Psalms, Job, Proverbs, Ecclesiastes, Song of Solomon, and Isaiah 1-10.",
       "contentUrl": "https://huggingface.co/datasets/Tobi-Shalom/english-Okun_corpus_Dataset/resolve/main/okun_corpus_full_5015.csv",
       "encodingFormat": "text/csv",
-      "sha256": "63d0b1f890ea85d65fc14c19571039e07c79b3bfdbe02fc2b963d07cebbcde48",
-      "contentSize": "1,086,062 bytes"
+      "sha256": "0ec0affd4a60c16eddb115a8ec9cb3bc43c834eda07edd8b2ed46f046428553b",
+      "contentSize": "1,091,078 bytes"
     }
   ],
   "recordSet": [
